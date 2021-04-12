@@ -18,7 +18,7 @@
             </div>
        </div>
         <!--Titre du groupe -->
-        <h1><!--{{groupPage}}--></h1>
+        <!--<h1>{{name_group}}</h1>-->
         <!--Affichage des commentaires-->
         <div class="bloc-commentaire" v-bind:key="index"  v-for="(publication , index)  in publication"  >
             <div class='title'>
@@ -51,7 +51,8 @@ export default {
             noValidate :true ,
             index:true,
             selectedFileName:null,
-            selectedFile:null
+            selectedFile:null,
+            //name_group:""
         }
     },
 
@@ -63,12 +64,13 @@ export default {
             }, 
     },
 
-   groupPage:function(){
+ /*  groupPage(){
             const clicGroup = localStorage.getItem('id_group') 
-            var name_group = clicGroup.split(",").slice(1)
-            console.log(name_group)
-              return name_group[0]
-        },
+            console.log (clicGroup)
+            this.name_group = clicGroup.split(",").slice(1)
+            console.log(this.name_group)
+             
+        },*/
     
 
     methods:{
@@ -125,10 +127,12 @@ export default {
         }
     },
     mounted(){
-        const clicGroup = localStorage.getItem('id_group')   
-            const groupId = clicGroup.split(",").slice(0,-1)    
+        const clicGroup = localStorage.getItem('id_group') 
+        console.log(clicGroup)  
+         //   const groupId = clicGroup.split(",").slice(0,-1)  
+           // console.log(groupId)  
         axios
-            .get ('http://localhost:8080/api/publication/'+ groupId)
+            .get ('http://localhost:8080/api/publication/'+ clicGroup)
             .then((response) => {
                 this.publication = response.data.slice().reverse()
                 console.log(this.publication)
