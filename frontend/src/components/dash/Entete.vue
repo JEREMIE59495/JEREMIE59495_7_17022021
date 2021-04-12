@@ -1,12 +1,19 @@
 <template >
-
   <section class="head">
-      <router-link class="deconnexion" to="/">Déconnexion</router-link>
+      <router-link class="deconnexion" to="/" @click="clear">Déconnexion</router-link>
       <img alt="logo groupomania" src="../../assets/icon.png ">
     <h2>GROUPOMANIA</h2>
   </section> 
 </template>
-
+<script>
+export default {
+  methods:{
+    clear(){
+      localStorage.clear()
+    }
+  }
+}
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .head{

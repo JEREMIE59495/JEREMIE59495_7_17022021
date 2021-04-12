@@ -18,7 +18,7 @@
             </div>
        </div>
         <!--Titre du groupe -->
-        <!--<h1>{{name_group}}</h1>-->
+        <h1>Actualité{{name_group}}</h1>
         <!--Affichage des commentaires-->
         <div class="bloc-commentaire" v-bind:key="index"  v-for="(publication , index)  in publication"  >
             <div class='title'>
@@ -52,7 +52,7 @@ export default {
             index:true,
             selectedFileName:null,
             selectedFile:null,
-            //name_group:""
+            name_group:""
         }
     },
 
@@ -64,7 +64,7 @@ export default {
             }, 
     },
 
- /*  groupPage(){
+  /* groupPage(){
             const clicGroup = localStorage.getItem('id_group') 
             console.log (clicGroup)
             this.name_group = clicGroup.split(",").slice(1)
@@ -77,7 +77,15 @@ export default {
        
         nocheck(index){
             this.publication = this.publication.filter(i=> i !=index)
-            console.log(index)
+            console.log(index.id)
+            axios
+                .delete('http://localhost:8080/api/publication/'+index.id,{})
+                .then((response)=>{   
+                    console.log(response)
+                    this.showComment= false
+                    document.location.reload();
+                })
+                .catch(error => console.log(error));
         },
 
         // insertion images
@@ -90,19 +98,20 @@ export default {
 
         PublieComment(){  
             const clicGroup = localStorage.getItem('id_group')   
-            const groupId = clicGroup.split(",").slice(0,-1)
+           // const groupId = clicGroup.split(",").slice(0,-1)
+           // console.log(groupId)
             const fd = new FormData();
             if(this.selectedFile != null &&  this.selectedFileName != null){
                 fd.append('img', this.selectedFile)
                 fd.append('image', this.selectedFileName )
                 fd.append('title', this.titleOfComment)
                 fd.append('comment', this.textOfComment)
-                fd.append('id_groupe',groupId)
+                fd.append('id_groupe',clicGroup)
                 fd.append('auteur', this.$store.state.user.last_name,)
             }else{
                 fd.append('title', this.titleOfComment)
                 fd.append('comment', this.textOfComment)
-                fd.append('id_groupe',groupId)
+                fd.append('id_groupe',clicGroup)
                 fd.append('auteur', this.$store.state.user.last_name,)
            }
 
@@ -128,14 +137,14 @@ export default {
     },
     mounted(){
         const clicGroup = localStorage.getItem('id_group') 
-        console.log(clicGroup)  
-         //   const groupId = clicGroup.split(",").slice(0,-1)  
+       // console.log(clicGroup.split(' ').slice(1))  
+            //const groupId = clicGroup.split(',').slice(0,-1)  
            // console.log(groupId)  
         axios
             .get ('http://localhost:8080/api/publication/'+ clicGroup)
             .then((response) => {
                 this.publication = response.data.slice().reverse()
-                console.log(this.publication)
+               // console.log(this.publication)
                
             })
             .catch(error => console.log(error));

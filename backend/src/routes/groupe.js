@@ -1,6 +1,6 @@
 const express = require ('express');
 const router = express.Router();
-
+//const auth = require ('../middleware/auth')
 const groupeController = require('../controllers/groupe');
 
 router.get('/', groupeController.getAllGroupe);

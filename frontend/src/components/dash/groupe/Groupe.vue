@@ -31,8 +31,9 @@
             }, 
 
             showThisPublication(id_groupe){
-                const infoGroup=[]
+                const infoGroup = []
                 infoGroup.push(id_groupe)
+                //infoGroup.push(name_group)
                 localStorage.setItem('id_group', infoGroup),
                 this.$emit('showThispublication', infoGroup)
                 document.location.reload();

@@ -47,6 +47,7 @@ export default new Vuex.Store({
 
       })
       .catch(error => {
+        
         console.log(error); 
       });         
       },
