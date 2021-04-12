@@ -1,24 +1,24 @@
 const publicationModel = require ('../models/publication');
+const fs = require('fs');
 
 //get toutes les publications
 exports.getAllPublication = (req, res)=>{
    publicationModel.getAllPublication((err,publication)=>{
-        console.log('nous sommes ici');
         if(err)
             res.send(err);
-            console.log('publication',publication);
+           // console.log('publication',publication);
             res.send(publication);
    })
 }
 
 exports.getOnePublication =(req,res)=>{
 
-    publicationModel.getOnepublication(req.params.id, (err,employee)=>{
+    publicationModel.getOnepublication(req.params.id, (err,publication)=>{
         if(err)
         res.send(err);
      //console.log(req.params.id);
-        res.send(employee);
-    //console.log(employee)
+        res.send(publication);
+    //console.log(publication)
     })
 }
 
@@ -36,7 +36,7 @@ exports.createNewPublication = (req,res)=> {
     }
     const publicationReqData = new publicationModel(req.body);
     console.log('publicationReqData',publicationReqData);
-console.log(req.body.image)
+    console.log(req.body.image)
     if(req.body.constructor === Object && Object.keys(req.body).lenght === 0){
         res.send(400).send({succes:false,message:'merci de remplir tous les champs'})
     }else{
@@ -65,10 +65,12 @@ exports.modifyPublication = (req,res)=>{
 }
 
 //supprimer employe
-exports.deletePublication=(req,res)=>{
-    publicationModel.deletePublication(req.params.id, (err,employee)=>{
-        if(err)
-        res.send(err);
-        res.json({success:true, message:'publication supprimée'});
-    })
+exports.deletePublication = (req,res)=>{
+        publicationModel.deletePublication(req.params.id, (err,employee)=>{
+            if(err)
+            res.send(err);
+            res.json({success:true, message:'publication supprimée'});
+        })
+   
+    
 }

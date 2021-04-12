@@ -322,7 +322,7 @@ export default {
     @media  screen and (min-width:601px)and (max-width:750px) {
         .publication{
             width:96%;
-            margin-top:-7em;
+            margin-top:0em;
             height:39em;
         }
 

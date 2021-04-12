@@ -1,4 +1,4 @@
-const Avatar = require('../models/employee');
+
 const employeeModel = require ('../models/employee');
 
 //get tous les employées

@@ -28,9 +28,9 @@ Publication.getOnepublication = (req,result )=>{
     dbConnect.query('SELECT * FROM publication WHERE id_groupe=?',[req],(err,res)=>{
         if(err){
             // console.log(err);
-
             result(null, err);
         }else{    
+           // console.log('model pub L34',res)
             result(null,res);
         }
     })

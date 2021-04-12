@@ -1,6 +1,7 @@
 const dbConnect = require('../../config/db.config');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 exports.signup=(req, res)=>{
     const {first_name, last_name, email, password, isAdmin} = req.body;
@@ -43,7 +44,7 @@ exports.login = async (req, res)=> {
                 res.status(200).json({
                     token:jwt.sign(
                         {id:id},
-                        'RANDOM_TOKEN_SECRET',
+                        process.env.TOKEN,
                         {expiresIn: '24h'} ,
                       //  console.log('id ctrl.user ligne 54 : ' , id)
                     ),
