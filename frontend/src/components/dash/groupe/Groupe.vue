@@ -30,10 +30,13 @@
             this.$emit('openGroup')
             }, 
 
-            showThisPublication(id_groupe){
+            showThisPublication(id_groupe , name_group){
                 const infoGroup = []
+                const nameGroup =[]
+                nameGroup.push(name_group)
                 infoGroup.push(id_groupe)
                 //infoGroup.push(name_group)
+                localStorage.setItem('group', nameGroup)
                 localStorage.setItem('id_group', infoGroup),
                 this.$emit('showThispublication', infoGroup)
                 document.location.reload();

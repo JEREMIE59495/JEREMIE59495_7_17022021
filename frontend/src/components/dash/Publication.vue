@@ -18,7 +18,7 @@
             </div>
        </div>
         <!--Titre du groupe -->
-        <h1>Actualité{{name_group}}</h1>
+        <h1>{{name_group}}</h1>
         <!--Affichage des commentaires-->
         <div class="bloc-commentaire" v-bind:key="index"  v-for="(publication , index)  in publication"  >
             <div class='title'>
@@ -56,25 +56,23 @@ export default {
         }
     },
 
+    created:function(){
+        this.name_group = localStorage.getItem('group');
+        //console.log(this.name_group);
+        if(this.name_group == null){
+            this.name_group = " Fil d'actualité"
+        }
+    },
+
     computed: {
-            ...mapState(['user']),
-            
+            ...mapState(['user']),       
             infoUser(){
                 return this.$store.state.user   
             }, 
     },
 
-  /* groupPage(){
-            const clicGroup = localStorage.getItem('id_group') 
-            console.log (clicGroup)
-            this.name_group = clicGroup.split(",").slice(1)
-            console.log(this.name_group)
-             
-        },*/
-    
-
     methods:{
-       
+
         nocheck(index){
             this.publication = this.publication.filter(i=> i !=index)
             console.log(index.id)
@@ -97,9 +95,7 @@ export default {
         },
 
         PublieComment(){  
-            const clicGroup = localStorage.getItem('id_group')   
-           // const groupId = clicGroup.split(",").slice(0,-1)
-           // console.log(groupId)
+            const clicGroup = localStorage.getItem('id_group')  
             const fd = new FormData();
             if(this.selectedFile != null &&  this.selectedFileName != null){
                 fd.append('img', this.selectedFile)
@@ -135,13 +131,18 @@ export default {
                 .catch(error => console.log(error));
         }
     },
+    
     mounted(){
         const clicGroup = localStorage.getItem('id_group') 
-       // console.log(clicGroup.split(' ').slice(1))  
-            //const groupId = clicGroup.split(',').slice(0,-1)  
-           // console.log(groupId)  
+       //console.log('CLIC',clicGroup)
+        if(clicGroup == null){
+            this.clicGroup='Génér_1615563480250'
+        }  else {
+            this. clicGroup = localStorage.getItem('id_group')
+        }
+
         axios
-            .get ('http://localhost:8080/api/publication/'+ clicGroup)
+            .get ('http://localhost:8080/api/publication/'+ this.clicGroup)
             .then((response) => {
                 this.publication = response.data.slice().reverse()
                // console.log(this.publication)

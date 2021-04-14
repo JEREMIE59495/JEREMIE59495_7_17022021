@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
-const routes = [
+ const routes = [
   {
     path: '/',
     name: 'Home',
@@ -23,6 +23,7 @@ const routes = [
     component: () => import('../views/Dashboard.vue')
   },
 ]
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
