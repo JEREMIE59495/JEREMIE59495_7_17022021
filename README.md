@@ -1,16 +1,21 @@
-### Hi there 👋
+### Réseau social d'entreprise "GROUPOMANIA"
 
-<!--
-**JEREMIE59495/JEREMIE59495** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Installation:
+Vous avez reçu par courriel un fichier SQL . Connecter vous à votre base de donnée puis importer le fichier.
+ Ensuite cloné le projet  et procédé comme ceci:
+allez sur le fichier.env pour configurer les informations de votre  base de donnée
 
-Here are some ideas to get you started:
+-BACKEND:
+cd backend
+npm install 
+nodemon server
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+-FRONTEND:
+cd frontend
+npm install
+npm run serve
+
+Quand les 2 services sont en fonctionnement rendez-vous sur la page 'http://localhost:8081"
+
+INFORMATION:
+A fin de limiter  l'envoi de fichier , le fichier .env à était mis volontairement sur le repository (ce qui n'est pas recommandé en règle général)
