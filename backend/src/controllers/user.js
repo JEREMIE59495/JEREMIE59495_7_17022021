@@ -13,7 +13,7 @@ exports.signup=(req, res)=>{
         }
         if(result.length > 0){ 
              res.status(401).json({message:"Cette email est déjà utilisée"})
-        }
+        }else{
         let hashedPassword = await bcrypt.hash(password,5)
        // console.log(hashedPassword)
         dbConnect.query('INSERT INTO employees SET ?',{first_name: first_name, last_name: last_name, email: email, password: hashedPassword, isAdmin:'0'}, (error, result)=>{
@@ -24,6 +24,7 @@ exports.signup=(req, res)=>{
             }
             res.send('envoyer')
         });
+    }
     })
 }
 
