@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 17 mai 2021 à 06:56
+-- Généré le : lun. 17 mai 2021 à 07:10
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `password` text NOT NULL,
   `isAdmin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `employees`
@@ -45,8 +45,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 INSERT INTO `employees` (`id`, `first_name`, `last_name`, `email`, `password`, `isAdmin`) VALUES
 (1, 'Thery', 'Jérémie', 'thery.jeremie@yahoo.fr', '$2b$05$7Jiyfasg5mHeVZxYOBVuzuDSwGcmchCd3UpgrTCaYF7fdSfUrBgSa', 1),
 (2, 'morgan', 'christophe', 'morgan.C@ net.fr', '$2b$05$bQC06Xru5.1P3fHgzRSx0ewco6Pawg.LAlRlU3KA0T0L8V5LJ1AAC', 0),
-(3, 'machin', 'Paul', 'local@exemple.de', '$2b$05$e2Swa0DlU8fEkZ5QeCW/P.NEVSxVt5x.6lNi5fz4oCyQZ4TAZbs5O', 0),
-(5, 'thery', 'Jérém ', 'lmlml', '$2b$05$M/TBNt1QuJ1owWK.J0mm1uaFtd8u8mba0t3VO0VYwOIQSMmjIyLHK', 0);
+(3, 'machin', 'Paul', 'local@exemple.de', '$2b$05$e2Swa0DlU8fEkZ5QeCW/P.NEVSxVt5x.6lNi5fz4oCyQZ4TAZbs5O', 0);
 
 -- --------------------------------------------------------
 
@@ -60,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `groupelist` (
   `name_group` varchar(30) NOT NULL,
   `id_groupe` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `groupelist`
@@ -71,8 +70,7 @@ INSERT INTO `groupelist` (`id`, `name_group`, `id_groupe`) VALUES
 (2, 'Logistique', 'Logis_1615563509329'),
 (3, 'Comptabilité', 'Compt_1615563584459'),
 (4, 'Transport', 'Trans_1615563651638'),
-(5, 'Employé', 'Emplo_1615638852936'),
-(8, 'new G', 'new G_1620718827103');
+(5, 'Employé', 'Emplo_1615638852936');
 
 -- --------------------------------------------------------
 
@@ -89,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `publication` (
   `auteur` varchar(30) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `publication`
