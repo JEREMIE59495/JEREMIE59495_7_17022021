@@ -18,4 +18,6 @@ User.getOneUser = (id, result )=>{
     });
 };
 
+
+
 module.exports = User;

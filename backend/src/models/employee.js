@@ -13,9 +13,9 @@ const Employee = function(employee){
 
 //get all employee
 Employee.getAllEmployees = (result)=>{
-    dbConnect.query('SELECT * FROM employees',(err,res)=>{
+    dbConnect.query('SELECT *FROM employees WHERE email="?" ',(err,res)=>{
         if(err){
-            console.log('error while fetching employees',err);
+            err=('IL n existe pas');
             result(null,err);
         }else{
             console.log('Données employees chargées avec succes !!');

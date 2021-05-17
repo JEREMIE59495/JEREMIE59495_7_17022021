@@ -1,6 +1,7 @@
 const dbConnect = require('../../config/db.config');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const models = require ('../models/employee')
 require('dotenv').config();
 
 exports.signup=(req, res)=>{
@@ -32,14 +33,17 @@ exports.signup=(req, res)=>{
 exports.login = async (req, res)=> {
     try{
         const { email, password} = req.body  
-              console.log(req.body)
+              console.log('ICI',req.body.email)
             if(!email ||!password){
-                return res.status(401).json({message:"utilisateur n'est pas enregistré"})      
+                return res.status(401).json({message:"Tous les champs ne sont pas remplit"})      
              }
+             
         dbConnect.query('SELECT * FROM employees WHERE email = ?', [email], async (error, result) =>{
-             console.log( 'ctrl.user ligne 37' , result)    
-            if(!result || !(await bcrypt.compare(password, result[0].password) )){
-                res.status(401).json({message:' Votre email ou votre mot de passe est incorrecte'})
+            if(result.length ==0){
+            res.status(401).json({message:' Votre email est incorrect'})
+            }
+            if(!(await bcrypt.compare(password, result[0].password) )){
+               res.status(401).json({message:' Votre mot de passe est incorrect'})
             }else{
                 const id = result[0].id;
                 console.log(id)
