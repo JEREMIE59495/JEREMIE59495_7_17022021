@@ -9,7 +9,7 @@ const Groupe = function(groupe){
 //création new groupe
 
 Groupe.createGroupe = (groupeReqData, result)=>{
-    console.log('toto',groupeReqData)
+    //console.log('groupeReqData)
     dbConnect.query('INSERT INTO groupelist SET ? ', groupeReqData,(err,res)=>{
         if(err){
             console.log('err insertion data');

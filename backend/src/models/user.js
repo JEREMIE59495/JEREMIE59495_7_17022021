@@ -9,7 +9,7 @@ const User = function(){
 User.getOneUser = (id, result )=>{
     dbConnect.query('SELECT * FROM employees WHERE id=?',id,(err,res)=>{
             if(err){
-                console.log('error while fetching employees',err);
+                console.log('error  employees',err);
                 result(null, err);
             }else{
                 console.log(err)

@@ -201,6 +201,10 @@ export default {
       text-align:center; 
       background: rgba(175, 175, 175, 0.075)
   }
+  a{
+      cursor:pointer;
+  }
+  
   .formProfil{
     width:100%;
     display:flex;

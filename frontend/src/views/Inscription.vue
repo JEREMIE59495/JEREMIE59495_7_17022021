@@ -12,7 +12,7 @@
                 </div>
                 <div class=" mail">
                     <label for="mail">E-mail :</label>
-                    <input type="email" id="mail" name="user_mail" v-model="dataSignup.email">
+                    <input type="email" id="mail" name="user_mail" v-model="dataSignup.email" >
                 </div>
                 <div class="password">
                     <label for="password">Mot de passe :</label>
@@ -24,7 +24,7 @@
         </div>
 
    <span> {{err}} </span>
-
+   <span> {{error}} </span>
     </div>
 </template>
 <script>
@@ -33,13 +33,14 @@ export default {
     name:"inscription",
     data(){
         return{
+            
             dataSignup: {
                 first_name:null,
                 last_name:null,
                 email:null,
                 password:null
             },
-
+        error:'',
            err:'',
 
         }
@@ -47,10 +48,10 @@ export default {
 
     methods:{
         signupUser:function(){
+            const regexEmail = /^[a-z0-9!#$ %& '*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&' * +/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
             console.log(this.dataSignup)
-            if(
-                this.dataSignup !==null
-            ){
+            if ((this.dataSignup !==null) && (regexEmail.test(this.dataSignup.email)))
+            {
                 axios
                 .post('http://localhost:8080/api/auth/signup', this.dataSignup )
                 .then(response=>{
@@ -64,7 +65,7 @@ export default {
 
                 })
             } else {     
-                console.log('Inscription non envoyé !!')
+               this.err=('Adresse mail incorrect!!')
             }
         }
     }

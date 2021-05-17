@@ -51,6 +51,10 @@ export default {
 		display:flex;
 	}
 
+    a{
+        cursor:pointer;
+    }
+    
 	.first_name{
 		text-transform: uppercase;
 		font-weight:bold;

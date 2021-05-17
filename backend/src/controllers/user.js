@@ -7,12 +7,13 @@ exports.signup=(req, res)=>{
     const {first_name, last_name, email, password, isAdmin} = req.body;
     //console.log(req.body.password)
     dbConnect.query('SELECT email FROM employees WHERE email =?',[email], async(error, result) =>{
+        console.log(result)
         if(error){
             console.log(error); 
             res.status(401).json({message:"erreur"})     
         }
         if(result.length > 0){ 
-             res.status(401).json({message:"Cette email est déjà utilisée"})
+            res.status(401).json({message:"Cette email est déjà utilisée"})
         }else{
         let hashedPassword = await bcrypt.hash(password,5)
        // console.log(hashedPassword)
@@ -36,7 +37,7 @@ exports.login = async (req, res)=> {
                 return res.status(401).json({message:"utilisateur n'est pas enregistré"})      
              }
         dbConnect.query('SELECT * FROM employees WHERE email = ?', [email], async (error, result) =>{
-            // console.log( 'ctrl.user ligne 37' , result)    
+             console.log( 'ctrl.user ligne 37' , result)    
             if(!result || !(await bcrypt.compare(password, result[0].password) )){
                 res.status(401).json({message:' Votre email ou votre mot de passe est incorrecte'})
             }else{

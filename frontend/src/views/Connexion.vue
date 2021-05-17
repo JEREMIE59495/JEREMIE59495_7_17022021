@@ -30,7 +30,7 @@ export default {
                 email:null,
                 password:null
             },
-          err:null
+          err:''
         }
     },
     methods:{ 
@@ -57,6 +57,7 @@ export default {
         } else {  
             console.log('echec de la connexion')
             console.log(this.error)
+          
         }   
     }}
 }
