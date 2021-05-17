@@ -55,9 +55,8 @@ export default {
                 // console.log(error.response.data.message);
             })
         } else {  
-           // console.log('echec de la connexion')
-           // console.log(this.error)
-          this.err =' toto'
+            console.log('echec de la connexion')
+            console.log(this.error)
         }   
     }}
 }
