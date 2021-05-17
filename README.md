@@ -22,7 +22,11 @@ allez sur le fichier.env pour configurer les informations de votre  base de donn
 
 .npm run serve
 
-Quand les 2 services sont en fonctionnement rendez-vous sur la page 'http://localhost:8081"
+- BASE DE DONNEE
+
+. Importer le fichier SQL dans votre base de donnée.
+
+Quand tous les services sont en fonctionnement et opérationnel rendez-vous sur la page 'http://localhost:8081"
 
 INFORMATION:
 
