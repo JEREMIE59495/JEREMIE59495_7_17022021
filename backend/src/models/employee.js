@@ -13,7 +13,7 @@ const Employee = function(employee){
 
 //get all employee
 Employee.getAllEmployees = (result)=>{
-    dbConnect.query('SELECT *FROM employees WHERE email="?" ',(err,res)=>{
+    dbConnect.query('SELECT *FROM employees ',(err,res)=>{
         if(err){
             err=('IL n existe pas');
             result(null,err);
