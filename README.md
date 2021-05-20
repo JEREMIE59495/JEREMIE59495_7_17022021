@@ -30,4 +30,4 @@ Quand tous les services sont en fonctionnement et opérationnel rendez-vous sur 
 
 INFORMATION:
 
-A fin de limiter  l'envoi de fichier , le fichier .env à était mis volontairement sur le repository (ce qui n'est pas recommandé en règle général)
+un fichier vous à été envoyer avec mes livrables . Merci de suivre les informations fournis via ce fichier
