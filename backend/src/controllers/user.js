@@ -21,7 +21,7 @@ exports.signup=(req, res)=>{
                if(result.length > 0){ 
                     res.status(401).json({message:"Cette email est déjà utilisée"})
                 }else{
-                    let cryptEmail = await bcrypt.hash(email,5);
+                    let cryptEmail = cryptoJS.SHA512(email).toString();
                 let hashedPassword = await bcrypt.hash(password,5)
              console.log(cryptEmail)
                     dbConnect.query('INSERT INTO employees SET ?',{first_name: first_name, last_name: last_name, email: cryptEmail, password: hashedPassword, isAdmin:'0'}, (error, result)=>{
@@ -49,12 +49,12 @@ exports.login = async (req, res)=> {
              }
              
         dbConnect.query('SELECT * FROM employees WHERE email = ?', [email], async (error, result) =>{
-          console.log(email)
-          console.log(result[0].password)
-            if((await bcrypt.compare(email, result[0].email))){
-                res.status(401).json({message:' Votre email est incorrect'})
-           } 
-             
+           console.log(result[0].first_name)
+           var email = cryptoJS.decrypt.SHA512(email)
+           console.log(email)
+             if(result.length ==0){
+            res.status(401).json({message:' Votre email est incorrect'})
+            }
             if(!(await bcrypt.compare(password, result[0].password) )){
                res.status(401).json({message:' Votre mot de passe est incorrect'})
             }
