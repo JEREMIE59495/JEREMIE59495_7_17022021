@@ -23,8 +23,8 @@
         <div class="bloc-commentaire" v-bind:key="index"  v-for="(publication , index)  in publication"  >
             <div class='title'>
                 {{publication.title}}
-                <span class="auteur_publication"><strong>par</strong> <small>{{publication.auteur}}</small> <strong>le </strong><small>{{publication.createdAt}}</small> </span>
-           <span class=“date” > Date de creation: {{moment(publication.createdAt).format("DD/MM/YYYY")}}</span>
+                <span class="auteur_publication"><strong>par</strong> <small>{{publication.auteur}}</small> <strong>le </strong><small>{{moment(publication.createdAt).format("DD/MM/YYYY")}}</small> </span>
+        
             </div>
             <div class='commentaire'>
                 <div class='bloc_commentaire'>{{publication.comment}}</div>
@@ -39,8 +39,9 @@
 </template>
 <script>
 import axios from'axios'
+//import Vue from 'vue'
 import {mapState} from 'vuex'
-import moment from 'vue-moment'
+var moment =require('moment')
 export default {
     name:"mur",
     data(){
