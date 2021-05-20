@@ -36,12 +36,17 @@ export default new Vuex.Store({
       //On récupère le token et on le décode pour récupèrer l'id
       const token = localStorage.getItem('userInfo')
       var decode = jwt_decode(token)
+      
       let userId= decode.id
      // console.log ('jeton decodé :' ,userId)
 
       // On récupère toute les info sur l'utilisateur qui se connecte
       axios
-      .get ('http://localhost:8080/api/employee/'+ userId)
+      .get ('http://localhost:8080/api/employee/'+ userId,{
+        headers:{
+            'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
+       }
+      })
       .then(response => {
         valeur.commit('userInfo',[response.data[0].id,response.data[0].first_name,response.data[0].last_name,response.data[0].email,response.data[0].isAdmin]	)   
 

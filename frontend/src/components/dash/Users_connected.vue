@@ -19,7 +19,11 @@ export default {
 
     mounted(){
         axios
-        .get ('http://localhost:8080/api/employee')
+        .get ('http://localhost:8080/api/employee',{
+             headers:{
+                     'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
+                }
+        })
         .then((response) => {
             this.userConnected = response.data;
         })

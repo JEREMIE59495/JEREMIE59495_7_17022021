@@ -26,10 +26,15 @@
             //fonction pour envoyer le nouveau groupe a la db
             addGroup(){  
                 const id_groupe = this.name_group.slice(0,5)+'_'+Date.now()
+                const name_group =this.name
                 console.log(id_groupe)
-                axios.post('http://localhost:8080/api/groupe', {
-                    name_group: this.name_group,
-                    id_groupe
+                axios.post('http://localhost:8080/api/groupe' ,id_groupe +name_group,{
+                headers:{
+                     'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
+                },
+                    
+                   // name_group: this.name_group,
+                   // id_groupe
                 }).then((response)=>{  
                     console.log(response)
                 })  

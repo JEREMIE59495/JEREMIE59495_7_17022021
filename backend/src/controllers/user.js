@@ -13,27 +13,35 @@ exports.signup=(req, res)=>{
             console.log(error); 
             res.status(401).json({message:"erreur"})     
         }
-        if(result.length > 0){ 
-            res.status(401).json({message:"Cette email est déjà utilisée"})
-        }else{
-        let hashedPassword = await bcrypt.hash(password,5)
-       // console.log(hashedPassword)
-        dbConnect.query('INSERT INTO employees SET ?',{first_name: first_name, last_name: last_name, email: email, password: hashedPassword, isAdmin:'0'}, (error, result)=>{
-            if(error){
-                //console.log(error);
-            } else{
-               // console.log(result)
+        const regexEmail = /^[a-z0-9!#$ %& '*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&' * +/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
+            console.log(this.dataSignup)
+            if (regexEmail.test(email))
+            {
+               if(result.length > 0){ 
+                    res.status(401).json({message:"Cette email est déjà utilisée"})
+                }else{
+                let hashedPassword = await bcrypt.hash(password,5)
+            // console.log(hashedPassword)
+                    dbConnect.query('INSERT INTO employees SET ?',{first_name: first_name, last_name: last_name, email: email, password: hashedPassword, isAdmin:'0'}, (error, result)=>{
+                        if(error){
+                            //console.log(error);
+                        } else{
+                        // console.log(result)
+                        }
+                        res.send('envoyer')
+                    });
+                }
+            }else{
+                 res.status(401).json({message:"Caractère spéciaux non autorisés"})
             }
-            res.send('envoyer')
-        });
-    }
+        
     })
 }
 
 exports.login = async (req, res)=> {
     try{
         const { email, password} = req.body  
-              console.log('ICI',req.body.email)
+             // console.log('ICI',req.body.email)
             if(!email ||!password){
                 return res.status(401).json({message:"Tous les champs ne sont pas remplit"})      
              }
@@ -44,20 +52,19 @@ exports.login = async (req, res)=> {
             }
             if(!(await bcrypt.compare(password, result[0].password) )){
                res.status(401).json({message:' Votre mot de passe est incorrect'})
-            }else{
+            }
                 const id = result[0].id;
                 console.log(id)
                 res.status(200).json({
-                    token:jwt.sign(
-                        {id:id},
-                        process.env.TOKEN,
-                        {expiresIn: '24h'} ,
-                      //  console.log('id ctrl.user ligne 54 : ' , id)
-                    ),
-                })   
-            }
-             return result
-        })
+                    id: id,
+                    token: jwt.sign(
+                      { id: id },
+                      process.env.TOKEN,
+                      { expiresIn: '24h' }
+                    )
+                    
+                })
+            })    
     }catch(error){
         console.log(error)
     }  

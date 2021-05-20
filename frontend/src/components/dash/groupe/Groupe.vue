@@ -46,7 +46,11 @@
      // Récupère tous les groupes sur la db
         mounted(){
             axios
-            .get ('http://localhost:8080/api/groupe')
+            .get ('http://localhost:8080/api/groupe',{
+                 headers:{
+                     'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
+                }
+            })
             .then((response) => {
                 this.groupe = response.data;
               //  console.log(this.groupe)
@@ -81,6 +85,7 @@
         border:none;
         text-align:left;
         margin-bottom:0.5em;
+        cursor:pointer;
         float:left
     }
 

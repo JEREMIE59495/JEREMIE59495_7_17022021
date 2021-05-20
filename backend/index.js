@@ -9,10 +9,11 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+   // res.setHeader ('authorization', 'bearer ')
     next();
   });
 
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 
 //Definie la route racine
@@ -33,7 +34,7 @@ const userRoutes= require('./src/routes/user')
 app.use('/api/employee',employeeRoutes)
 app.use('/api/publication',publicationRoutes)
 app.use('/api/groupe',groupeRoutes)
-app.use('/api/auth',userRoutes)
+app.use('/api/users',userRoutes)
 
 //Ecoute du port
 app.listen(port,()=>{

@@ -161,20 +161,22 @@ export default {
        // }
         },
           deleteAccount() {
-            const token = localStorage.getItem('userInfo')
-            var decode = jwt_decode(token)
-            let userId= decode.id
+             const deleteSession = window.confirm('Voulez vous vraiment suprrimer votre compte ?');
+                if(deleteSession == true){
+                    const token = localStorage.getItem('userInfo')
+                    var decode = jwt_decode(token)
+                    let userId= decode.id
 
-            axios
-              .delete("http://localhost:8080/api/employee/"+ userId)
-              
-              .then(() => {
-                localStorage.clear();
-                location.replace(location.origin);
-              })
-              .catch(error => console.log(error));
-          },
-
+                    axios
+                    .delete("http://localhost:8080/api/employee/"+ userId)
+                    
+                    .then(() => {
+                        localStorage.clear();
+                        location.replace(location.origin);
+                    })
+                    .catch(error => console.log(error));
+                    }
+                 },
             //Affiche les inputs de modification
             modifyFN(){
               this.modifyFirstName=true

@@ -53,7 +53,7 @@ export default {
             if ((this.dataSignup !==null) && (regexEmail.test(this.dataSignup.email)))
             {
                 axios
-                .post('http://localhost:8080/api/auth/signup', this.dataSignup )
+                .post('http://localhost:8080/api/users/signup', this.dataSignup )
                 .then(response=>{
                         location.replace('http://localhost:8081/Connexion')
                         console.log(response)

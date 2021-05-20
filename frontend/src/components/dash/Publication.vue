@@ -74,18 +74,24 @@ export default {
     methods:{
 
         nocheck(index){
+            const deletePublication =window.confirm("Voulez-vous vraiment supprimer cette publication");
+            if(deletePublication == true){
             this.publication = this.publication.filter(i=> i !=index)
             console.log(index.id)
             axios
-                .delete('http://localhost:8080/api/publication/'+index.id,{})
+                .delete('http://localhost:8080/api/publication/'+index.id,{
+               headers:{
+                     'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
+                }
+                })
                 .then((response)=>{   
                     console.log(response)
                     this.showComment= false
                     document.location.reload();
                 })
                 .catch(error => console.log(error));
-        },
-
+        }
+},
         // insertion images
         uploadFile (event) {
             console.log(event)
@@ -112,17 +118,12 @@ export default {
            }
 
            axios
-                .post('http://localhost:8080/api/publication/',fd,{})
-               // .then((response)=> {console.log('LA', response.data.data)})
-         /*   axios
-                .post('http://localhost:8080/api/publication/',{
-                    title:this.titleOfComment,
-                    comment:this.textOfComment,
-                    id_groupe:groupId,
-                    auteur:this.$store.state.user.last_name,
-                    image:this.selectedFileName
-                
-                })*/
+                .post('http://localhost:8080/api/publication/',fd,{
+                headers:{
+                     'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
+                }
+                })
+            
                 .then((response)=>{   
                     console.log(response)
                     this.showComment= false
@@ -142,7 +143,11 @@ export default {
         }
 
         axios
-            .get ('http://localhost:8080/api/publication/'+ this.clicGroup)
+            .get ('http://localhost:8080/api/publication/'+ this.clicGroup,{
+                headers:{
+                    'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
+                }
+            }) 
             .then((response) => {
                 this.publication = response.data.slice().reverse()
                // console.log(this.publication)

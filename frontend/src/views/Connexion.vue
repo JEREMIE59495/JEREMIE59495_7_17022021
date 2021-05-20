@@ -41,7 +41,7 @@ export default {
                 this.password !== null
             ){
             axios
-            .post('http://localhost:8080/api/auth/login',this.dataLogin
+            .post('http://localhost:8080/api/users/login',this.dataLogin
             )
             .then(response =>{
                 localStorage.setItem('userInfo',response.data.token,)

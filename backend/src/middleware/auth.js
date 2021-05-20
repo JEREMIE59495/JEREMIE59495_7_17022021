@@ -2,9 +2,11 @@ const jwt = require ('jsonwebtoken');
 
 module.exports = (req, res, next)=>{
     try{
-        const token = req.headers.authorization.split('')[1];
+        console.log('auth ok')
+        console.log(req.headers)
+        const token = req.headers.authorization.split(' ')[1];
         console.log(token)
-        const decodedToken = jwt.verify(token,'RANDOM_TOKEN_SECRET');
+        const decodedToken = jwt.verify(token, process.env.TOKEN);
         console.log('ICI',decodedToken)
         const userId = decodedToken.userId;
         console.log('ICI1',userId)
@@ -15,7 +17,9 @@ module.exports = (req, res, next)=>{
             }
     }catch{
         res.status(401).json({
+            
             error:new Error('Invalid request')
         })
+        console.log('error')
     }
 }
