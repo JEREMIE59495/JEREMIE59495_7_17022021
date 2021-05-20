@@ -6,7 +6,7 @@ exports.getAllPublication = (req, res)=>{
    publicationModel.getAllPublication((err,publication)=>{
         if(err)
             res.send(err);
-         //   console.log('publication',publication);
+            //console.log('publication',publication);
             //res.send(publication);
    })
 }

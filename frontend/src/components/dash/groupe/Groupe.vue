@@ -6,7 +6,7 @@
             <ul> 
                 <button class="btn_groupe" v-bind:key="index" v-for="(groupe,index) in groupe" @click='showThisPublication( groupe.id_groupe , groupe.name_group)'><img class="logo">{{groupe.name_group}}</button>
             </ul>
-            <div class=" addNewGroup" @click="group">
+            <div class="addNewGroup" @click="group">
               <i class="fas fa-plus"></i>
               <p>Créer un groupe</p>
             </div>
@@ -70,6 +70,10 @@
         flex-direction: column;
         margin-top:0.5em;
         padding-left:2em;
+    }
+
+    .addNewGroup{
+        cursor: pointer;
     }
 
     h3{

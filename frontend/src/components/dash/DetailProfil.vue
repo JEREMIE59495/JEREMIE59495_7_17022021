@@ -20,11 +20,6 @@
             <input type:text v-if='modifyLastName' v-model ='last_name'>
             <button @click='modifyLN'><i class="fas fa-pen"></i></button>
           </p>
-            <p>E-mail :
-              <span>{{user.email}}</span>
-              <input type:email v-if='modifyEmail' v-model='email'>
-              <button @click='modifyE'><i class="fas fa-pen"></i></button>
-          </p>
           <p>Confirmer votre mot de passe :
               <input id='pass' type="password" v-model='password' @keyup="ctrlMdp" >
           </p>
@@ -58,7 +53,7 @@ export default {
           //Masquage des inputs a l'initialisation
           modifyFirstName: false,
           modifyLastName: false,
-          modifyEmail: false,
+          //modifyEmail: false,
           modifProfil :true,
           modifPassword:false,
           //valeur de l'input
@@ -155,7 +150,7 @@ export default {
               this.$emit('closeProfil')
               this.modifyFirstName=false
               this.modifyLastName=false
-              this.modifyEmail=false
+             // this.modifyEmail=false
               this.modifypassword=false
        // }
         },
@@ -186,9 +181,9 @@ export default {
             modifyLN(){
               this.modifyLastName=true
             },
-            modifyE(){
-              this.modifyEmail=true
-            },
+          //  modifyE(){
+          //    this.modifyEmail=true
+          //  },
       },
 }
 </script>

@@ -1,6 +1,5 @@
 const groupeModel = require ('../models/groupe');
 
-
 //get tous groupes
 exports.getAllGroupe = (req, res)=>{
     groupeModel.getAllGroupe((err,groupelist)=>{
