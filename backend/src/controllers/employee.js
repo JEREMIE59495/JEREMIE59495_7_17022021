@@ -25,7 +25,7 @@ exports.getOneEmployee =(req,res)=>{
 //création new employee
 exports.createNewEmployee = (req,res)=> {
 
-    console.log('employeeReqData',employeeReqData);
+   // console.log('employeeReqData',employeeReqData);
 
     if(req.body.constructor === Object && Object.keys(imageUpdate).lenght === 0){
         res.send(400).send({succes:false,message:'merci de remplir tous les champs'})

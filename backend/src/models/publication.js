@@ -6,16 +6,20 @@ const Publication = function(publication){
     this.comment = publication.comment;
     this.id_groupe = publication.id_groupe;
     this.auteur = publication.auteur;
-    this.image = publication.image
+    
+    this.createdAt = new Date();
+    this.image = publication.image;
 }
 
 //get all employee
 Publication.getAllPublication = (result)=>{
     dbConnect.query('SELECT * FROM publication',(err,res)=>{
+        
         if(err){
             console.log('error while fetching publication',err);
             result(null,err);
         }else{
+           // console.log(result.id)
             console.log('Publication fetched succes !!');
             result(null,res);
         }
@@ -38,12 +42,13 @@ Publication.getOnepublication = (req,result )=>{
 
 //création new models
 Publication.createPublication = (publicationReqData, result)=>{
+    
     dbConnect.query('INSERT INTO publication SET ?', publicationReqData,(err,res)=>{
         if(err){
 
-        //    console.log('recup back model publi L40',publicationReqData)
+            console.log('recup back model publi L45',publicationReqData)
 
-            console.log('err insertion data');
+            console.log('error insertion data');
             result(null,err);
         }else{
             console.log('publication crée avec succès');

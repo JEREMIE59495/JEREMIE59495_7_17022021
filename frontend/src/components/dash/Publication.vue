@@ -23,7 +23,8 @@
         <div class="bloc-commentaire" v-bind:key="index"  v-for="(publication , index)  in publication"  >
             <div class='title'>
                 {{publication.title}}
-                <span class="auteur_publication"><small>par</small> {{publication.auteur}}</span>
+                <span class="auteur_publication"><strong>par</strong> <small>{{publication.auteur}}</small> <strong>le </strong><small>{{publication.createdAt}}</small> </span>
+           <span class=“date” > Date de creation: {{moment(publication.createdAt).format("DD/MM/YYYY")}}</span>
             </div>
             <div class='commentaire'>
                 <div class='bloc_commentaire'>{{publication.comment}}</div>
@@ -39,11 +40,12 @@
 <script>
 import axios from'axios'
 import {mapState} from 'vuex'
-
+import moment from 'vue-moment'
 export default {
     name:"mur",
     data(){
         return{
+            moment:moment,
             //Etat actuel des input formulaire
             textOfComment:null,
             titleOfComment:null,
@@ -52,7 +54,8 @@ export default {
             index:true,
             selectedFileName:null,
             selectedFile:null,
-            name_group:""
+            name_group:"",
+            
         }
     },
 
@@ -150,7 +153,7 @@ export default {
             }) 
             .then((response) => {
                 this.publication = response.data.slice().reverse()
-               // console.log(this.publication)
+                console.log(response.data)
                
             })
             .catch(error => console.log(error));

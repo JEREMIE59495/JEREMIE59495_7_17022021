@@ -141,16 +141,15 @@ export default {
           //modification du profil
      
           axios
-            .put('http://localhost:8080/api/employee/'+ userId, 
-           {
-              first_name:this.first_name,
-              last_name:this.last_name,
-              email:this.email,
+            .put('http://localhost:8080/api/employee/' + userId,{ 
+                    first_name:this.first_name,
+                    last_name:this.last_name,
+                    email:this.email,
 
-              password: this.password,
-              //modif mdp
-              newPassword:this.newPassword
-
+                    password: this.password,
+                    //modif mdp
+                    newPassword:this.newPassword
+                
             })
             .then(res => console.log('titi',res))
               this.$emit('closeProfil')
@@ -168,15 +167,18 @@ export default {
                     let userId= decode.id
 
                     axios
-                    .delete("http://localhost:8080/api/employee/"+ userId)
-                    
+                    .delete("http://localhost:8080/api/employee/"+ userId,{
+                     headers:{
+                    'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
+                }
+                })
                     .then(() => {
                         localStorage.clear();
                         location.replace(location.origin);
                     })
                     .catch(error => console.log(error));
                     }
-                 },
+                    },
             //Affiche les inputs de modification
             modifyFN(){
               this.modifyFirstName=true
@@ -187,9 +189,6 @@ export default {
             modifyE(){
               this.modifyEmail=true
             },
-            /*  modifyP(){
-              this.modifypassword=true
-            },*/
       },
 }
 </script>

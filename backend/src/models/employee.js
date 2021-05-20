@@ -28,14 +28,14 @@ Employee.getAllEmployees = (result)=>{
 
 Employee.getOneEmployee = (req,result )=>{
 
-   console.log('recup back model emplo L27',req)
+  // console.log('recup back model emplo L27',req)
 
             dbConnect.query('SELECT * FROM employees WHERE id=?',[req],(err,res)=>{
             if(err){
                 console.log('error while fetching employees',err);
                 result(null, err);
             }else{
-              console.log('ctrl employee L36',res)
+         //     console.log('ctrl employee L36',res)
             result(null,res);
             }
         })
@@ -59,6 +59,7 @@ Employee.createEmployee = (employeeReqData, result)=>{
 //modifier employé
 
 Employee.modifyEmployee=(id,employeeReqData, result)=>{
+    console.log('la',employeeReqData)
     dbConnect.query('SELECT password FROM employees WHERE id=?',id,(err,res)=>{
 
         console.log(res[0].password);
