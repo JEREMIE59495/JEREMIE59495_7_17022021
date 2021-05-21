@@ -7,6 +7,9 @@ require('dotenv').config();
 
 exports.signup=(req, res)=>{
     const {first_name, last_name, email, password, isAdmin} = req.body;
+    if(!email ||!password || !first_name || !last_name){
+        return res.status(401).json({message:"Tous les champs ne sont pas remplit"})      
+     }
     //console.log(req.body.password)
     let cryptEmail = CryptoJS.AES.encrypt(email,  CryptoJS.enc.Hex.parse(process.env.KEY), { iv: CryptoJS.enc.Hex.parse(process.env.IV) }).toString();
     dbConnect.query('SELECT email FROM employees WHERE email =?',[cryptEmail], async(error, result) =>{

@@ -38,7 +38,7 @@ export default new Vuex.Store({
       var decode = jwt_decode(token)
       
       let userId= decode.id
-     // console.log ('jeton decodé :' ,userId)
+     console.log ('jeton decodé :' ,userId)
 
       // On récupère toute les info sur l'utilisateur qui se connecte
       axios
