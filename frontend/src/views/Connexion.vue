@@ -35,7 +35,7 @@ export default {
     },
     methods:{ 
         login:function(){
-            console.log(this.dataLogin)
+            //console.log(this.dataLogin)
             if(
                 this.email !== null ||
                 this.password !== null
@@ -46,8 +46,8 @@ export default {
             .then(response =>{
                 localStorage.setItem('userInfo',response.data.token,)
                 location.replace('http://localhost:8081/Dashboard')
-                console.log( response)
-                console.log(response.data)
+               // console.log( response)
+                //console.log(response.data)
             })
             .catch(error =>{
                 this.err = error.response.data.message
@@ -56,7 +56,7 @@ export default {
             })
         } else {  
             console.log('echec de la connexion')
-            console.log(this.error)
+            //console.log(this.error)
         }   
     }}
 }

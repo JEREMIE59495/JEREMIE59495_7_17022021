@@ -15,7 +15,7 @@ exports.signup=(req, res)=>{
             res.status(401).json({message:"erreur"})     
         }
         const regexEmail = /^[a-z0-9!#$ %& '*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&' * +/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
-            console.log(this.dataSignup)
+            //console.log(this.dataSignup)
             if (regexEmail.test(email))
             {
                if(result.length > 0){ 
@@ -57,7 +57,6 @@ exports.login = async (req, res)=> {
                 res.status(401).json({message:' Votre mot de passe est incorrect'})
                 }
                     const id = result[0].id;
-                    console.log(id)
                     res.status(200).json({
                         id: id,
                         token: jwt.sign(

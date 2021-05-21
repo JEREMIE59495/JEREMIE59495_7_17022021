@@ -59,11 +59,10 @@ Employee.createEmployee = (employeeReqData, result)=>{
 //modifier employé
 
 Employee.modifyEmployee=(id,employeeReqData, result)=>{
-    console.log('la',employeeReqData)
+    //console.log('la',employeeReqData)
     dbConnect.query('SELECT password FROM employees WHERE id=?',id,(err,res)=>{
 
-        console.log(res[0].password);
-        console.log('model employee L59',employeeReqData)
+        //console.log('model employee L59',employeeReqData)
         bcrypt.compare ( employeeReqData.password ,res[0].password) . then ( function ( result )  { 
             if(result == true){ 
                 console.log('Mot de passe identique')

@@ -35,7 +35,7 @@ exports.createNewPublication = (req,res)=> {
         req.body.image = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
     }
     const publicationReqData = new publicationModel(req.body);
-    console.log('publicationReqData',publicationReqData);
+    //console.log('publicationReqData',publicationReqData);
    // console.log(req.body.image)
     if(req.body.constructor === Object && Object.keys(req.body).lenght === 0){
         res.send(400).send({succes:false,message:'merci de remplir tous les champs'})
@@ -52,7 +52,7 @@ exports.createNewPublication = (req,res)=> {
 //modifier un employee
 exports.modifyPublication = (req,res)=>{
     const publicationReqData = new publicationModel(req.body);
-    console.log('publicationReqData modify',publicationReqData);
+    //console.log('publicationReqData modify',publicationReqData);
     if(req.body.constructor === Object && Object.keys(req.body).lenght === 0){
         res.send(400).send({succes:false,message:'merci de remplir tous les champs'})
     }else{

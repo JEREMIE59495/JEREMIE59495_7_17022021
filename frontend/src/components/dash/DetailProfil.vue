@@ -136,16 +136,21 @@ export default {
           //modification du profil
      
           axios
-            .put('http://localhost:8080/api/employee/' + userId,{ 
+            .put('http://localhost:8080/api/employee/' + userId,
+            { 
                     first_name:this.first_name,
                     last_name:this.last_name,
                     email:this.email,
-
                     password: this.password,
                     //modif mdp
                     newPassword:this.newPassword
-                
-            })
+ 
+            }, 
+            { headers:{
+                     'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
+                }
+                })
+
             .then(res => console.log('titi',res))
               this.$emit('closeProfil')
               this.modifyFirstName=false

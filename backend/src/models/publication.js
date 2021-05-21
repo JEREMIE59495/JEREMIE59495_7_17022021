@@ -6,15 +6,13 @@ const Publication = function(publication){
     this.comment = publication.comment;
     this.id_groupe = publication.id_groupe;
     this.auteur = publication.auteur;
-    
     this.createdAt = new Date();
     this.image = publication.image;
 }
 
 //get all employee
 Publication.getAllPublication = (result)=>{
-    dbConnect.query('SELECT * FROM publication',(err,res)=>{
-        
+    dbConnect.query('SELECT * FROM publication',(err,res)=>{  
         if(err){
             console.log('error while fetching publication',err);
             result(null,err);
@@ -46,7 +44,7 @@ Publication.createPublication = (publicationReqData, result)=>{
     dbConnect.query('INSERT INTO publication SET ?', publicationReqData,(err,res)=>{
         if(err){
 
-            console.log('recup back model publi L45',publicationReqData)
+          //  console.log('recup back model publi L45',publicationReqData)
 
             console.log('error insertion data');
             result(null,err);

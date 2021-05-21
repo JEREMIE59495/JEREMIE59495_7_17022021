@@ -21,7 +21,6 @@ const userInfo = localStorage.getItem('userInfo')
 if( userInfo == null ){
  document.location.href='/Connexion'
     //console.log(routes)
- 
 }
 
   import Entete from '@/components/dash/Entete.vue'

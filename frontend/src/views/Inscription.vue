@@ -49,7 +49,7 @@ export default {
     methods:{
         signupUser:function(){
             const regexEmail = /^[a-z0-9!#$ %& '*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&' * +/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
-            console.log(this.dataSignup)
+            //console.log(this.dataSignup)
             if ((this.dataSignup !==null) && (regexEmail.test(this.dataSignup.email)))
             {
                 axios
@@ -61,7 +61,7 @@ export default {
                 .catch(error =>{
                     this.err = error.response.data.message
 
-                    console.log(this.err)
+                   // console.log(this.err)
 
                 })
             } else {     

@@ -12,9 +12,7 @@ exports.getAllGroupe = (req, res)=>{
 
 //création new groupe
 exports.createNewGroupe = (req,res)=> {
-  //  console.log(req.body)
     const groupeReqData = new groupeModel(req.body);
-  //  console.log('donnée envoyée =>',groupeReqData);
     if(req.body.constructor === Object && Object(req.body).lenght === 0){
         res.send(400).send({succes:false,message:'merci de remplir tous les champs'})
     }else{
