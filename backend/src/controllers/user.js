@@ -8,17 +8,19 @@ require('dotenv').config();
 exports.signup=(req, res)=>{
     const {first_name, last_name, email, password, isAdmin} = req.body;
     //console.log(req.body.password)
-    dbConnect.query('SELECT email FROM employees WHERE email =?',[email], async(error, result) =>{
+    let cryptEmail = CryptoJS.AES.encrypt(email,  CryptoJS.enc.Hex.parse(process.env.KEY), { iv: CryptoJS.enc.Hex.parse(process.env.IV) }).toString();
+    dbConnect.query('SELECT email FROM employees WHERE email =?',[cryptEmail], async(error, result) =>{
         //console.log(result)
         if(error){
             //console.log(error); 
             res.status(401).json({message:"erreur"})     
         }
         const regexEmail = /^[a-z0-9!#$ %& '*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&' * +/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
-            //console.log(this.dataSignup)
+           // console.log(this.dataSignup)
             if (regexEmail.test(email))
             {
                if(result.length > 0){ 
+                   console.log('ici',result.length)
                     res.status(401).json({message:"Cette email est déjà utilisée"})
                 }else{
                     let cryptEmail = CryptoJS.AES.encrypt(email,  CryptoJS.enc.Hex.parse(process.env.KEY), { iv: CryptoJS.enc.Hex.parse(process.env.IV) }).toString();
@@ -34,7 +36,7 @@ exports.signup=(req, res)=>{
                     });
                 }
             }else{
-                 res.status(401).json({message:"Caractère spéciaux non autorisés"})
+               res.status(401).json({message:"Caractère spéciaux non autorisés"})
             }
         
     })
