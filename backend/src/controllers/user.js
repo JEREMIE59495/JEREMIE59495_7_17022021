@@ -20,7 +20,6 @@ exports.signup=(req, res)=>{
             if (regexEmail.test(email))
             {
                if(result.length > 0){ 
-                   console.log('ici',result.length)
                     res.status(401).json({message:"Cette email est déjà utilisée"})
                 }else{
                     let cryptEmail = CryptoJS.AES.encrypt(email,  CryptoJS.enc.Hex.parse(process.env.KEY), { iv: CryptoJS.enc.Hex.parse(process.env.IV) }).toString();
