@@ -45,9 +45,10 @@ export default {
             )
             .then(response =>{
                 localStorage.setItem('userInfo',response.data.token,)
+                localStorage.setItem('userId',response.data.id,)
                 location.replace('http://localhost:8081/Dashboard')
-               // console.log( response)
-                //console.log(response.data)
+                console.log( 'ici',response.data.id)
+                console.log('ici',response.data)
             })
             .catch(error =>{
                 this.err = error.response.data.message

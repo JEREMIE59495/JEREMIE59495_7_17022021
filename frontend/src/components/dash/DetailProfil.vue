@@ -43,7 +43,6 @@
 <script>
 import {mapState} from 'vuex'
 import axios from 'axios'
-import jwt_decode from'jwt-decode'
 
 export default {
   name: 'DetailProfil',
@@ -53,7 +52,6 @@ export default {
           //Masquage des inputs a l'initialisation
           modifyFirstName: false,
           modifyLastName: false,
-          //modifyEmail: false,
           modifProfil :true,
           modifPassword:false,
           //valeur de l'input
@@ -62,10 +60,8 @@ export default {
           email: null,
           password:"",
           newPassword:null,
-         // validated:true,
           advance:true,
           general:false,
-
           submitted:""
 
         }    
@@ -128,15 +124,13 @@ export default {
              alert('Votre mot de passe doit être différent')
          }
 
-        //recuperation token
-          const token = localStorage.getItem('userInfo')
-          var decode = jwt_decode(token)
-          let userId= decode.id
-        
+        //recuperation de l'id
+          const id = localStorage.getItem('userId')
+    
           //modification du profil
      
           axios
-            .put('http://localhost:8080/api/employee/' + userId,
+            .put('http://localhost:8080/api/employee/' + id,
             { 
                     first_name:this.first_name,
                     last_name:this.last_name,
@@ -162,12 +156,10 @@ export default {
           deleteAccount() {
              const deleteSession = window.confirm('Voulez vous vraiment suprrimer votre compte ?');
                 if(deleteSession == true){
-                    const token = localStorage.getItem('userInfo')
-                    var decode = jwt_decode(token)
-                    let userId= decode.id
+                    const id = localStorage.getItem('userId')
 
                     axios
-                    .delete("http://localhost:8080/api/employee/"+ userId,{
+                    .delete("http://localhost:8080/api/employee/"+ id,{
                      headers:{
                     'Authorization': 'Bearer ' + localStorage.getItem('userInfo')
                 }

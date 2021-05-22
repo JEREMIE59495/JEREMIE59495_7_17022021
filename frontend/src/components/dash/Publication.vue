@@ -139,7 +139,6 @@ export default {
     
     mounted(){
         const clicGroup = localStorage.getItem('id_group') 
-       //console.log('CLIC',clicGroup)
         if(clicGroup == null){
             this.clicGroup='Génér_1615563480250'
         }  else {
@@ -159,7 +158,6 @@ export default {
             })
             .catch(error => console.log(error));
     }, 
-
 }
 
 </script>
